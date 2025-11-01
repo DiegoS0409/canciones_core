@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Service
 public class ServicioCanciones {
-    
+
     @Autowired
     private RepositorioCanciones repositorio;
 
@@ -20,5 +20,9 @@ public class ServicioCanciones {
     public Cancion obtenerCancionPorId(Long id) {
         Optional<Cancion> cancion = repositorio.findById(id);
         return cancion.orElse(null);
+    }
+
+    public Cancion agregarCancion(Cancion cancion) {
+        return repositorio.save(cancion);
     }
 }

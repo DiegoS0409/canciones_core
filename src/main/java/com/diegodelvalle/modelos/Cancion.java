@@ -3,6 +3,8 @@ package com.diegodelvalle.modelos;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "canciones")
@@ -12,85 +14,58 @@ public class Cancion {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Campo Obligatorio")
+    @Size(min = 5, message = "El título debe tener al menos 5 caracteres")
     private String titulo;
+
+    @NotBlank(message = "Campo Obligatorio")
+    @Size(min = 3, message = "El artista debe tener al menos 3 caracteres")
     private String artista;
+
+    @NotBlank(message = "Campo Obligatorio")
+    @Size(min = 3, message = "El álbum debe tener al menos 3 caracteres")
     private String album;
+
+    @NotBlank(message = "Campo Obligatorio")
+    @Size(min = 3, message = "El género debe tener al menos 3 caracteres")
     private String genero;
+
+    @NotBlank(message = "Campo Obligatorio")
+    @Size(min = 3, message = "El idioma debe tener al menos 3 caracteres")
     private String idioma;
 
-    @Column
-    (name = "fecha_creacion", updatable = false)
+    @Column(name = "fecha_creacion", updatable = false)
     private LocalDateTime fechaCreacion;
 
-    @Column
-    (name = "fecha_actualizacion")
+    @Column(name = "fecha_actualizacion")
     private LocalDateTime fechaActualizacion;
 
     public Cancion() {}
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public String getTitulo() {
-        return titulo;
-    }   
+    public String getTitulo() { return titulo; }
+    public void setTitulo(String titulo) { this.titulo = titulo; }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
+    public String getArtista() { return artista; }
+    public void setArtista(String artista) { this.artista = artista; }
 
-    public String getArtista() {
-        return artista;
-    }
+    public String getAlbum() { return album; }
+    public void setAlbum(String album) { this.album = album; }
 
-    public void setArtista(String artista) {
-        this.artista = artista;
-    }
+    public String getGenero() { return genero; }
+    public void setGenero(String genero) { this.genero = genero; }
 
-    public String getAlbum() {
-        return album;
-    }
+    public String getIdioma() { return idioma; }
+    public void setIdioma(String idioma) { this.idioma = idioma; }
 
-    public void setAlbum(String album) {
-        this.album = album;
-    }
+    public LocalDateTime getFechaCreacion() { return fechaCreacion; }
+    public void setFechaCreacion(LocalDateTime fechaCreacion) { this.fechaCreacion = fechaCreacion; }
 
-    public String getGenero() {
-        return genero;
-    }
-
-    public void setGenero(String genero) {
-        this.genero = genero;
-    }
-
-    public String getIdioma() {
-        return idioma;
-    }
-
-    public void setIdioma(String idioma) {
-        this.idioma = idioma;
-    }
-
-    public LocalDateTime getFechaCreacion() {
-        return fechaCreacion;
-    }
-
-    public void setFechaCreacion(LocalDateTime fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
-    }
-
-    public LocalDateTime getFechaActualizacion() {
-        return fechaActualizacion;
-    }
-
-    public void setFechaActualizacion(LocalDateTime fechaActualizacion) {
-        this.fechaActualizacion = fechaActualizacion;
-    }
+    public LocalDateTime getFechaActualizacion() { return fechaActualizacion; }
+    public void setFechaActualizacion(LocalDateTime fechaActualizacion) { this.fechaActualizacion = fechaActualizacion; }
 
     @PrePersist
     protected void onCreate() {
@@ -101,6 +76,4 @@ public class Cancion {
     protected void onUpdate() {
         this.fechaActualizacion = LocalDateTime.now();
     }
-
 }
-

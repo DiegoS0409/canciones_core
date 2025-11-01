@@ -4,9 +4,13 @@ import com.diegodelvalle.modelos.Cancion;
 import com.diegodelvalle.servicios.ServicioCanciones;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import jakarta.validation.Valid;
+import org.springframework.validation.BindingResult;
 import java.util.List;
 
 @Controller
@@ -23,10 +27,25 @@ public class ControladorCanciones {
     }
     
     @GetMapping("/canciones/detalle/{idCancion}")
-    public String desplegarDetalleCancion(@PathVariable("idCancion") Long idCancion, Model model) {
+    public String desplegarDetalleCancion(@PathVariable Long idCancion, Model model) {
         Cancion cancion = servicio.obtenerCancionPorId(idCancion);
         model.addAttribute("cancion", cancion);
         return "detalleCancion";
     }
-    
+
+    @GetMapping("/canciones/formulario/agregar")
+    public String formularioAgregarCancion(Model model) {
+        model.addAttribute("cancion", new Cancion());
+        return "agregarCancion";
+    }
+
+    @PostMapping("/canciones/procesa/agregar")
+    public String procesarAgregarCancion(@Valid @ModelAttribute("cancion") Cancion cancion,
+    BindingResult result) {
+        if (result.hasErrors()) {
+            return "agregarCancion";
+        }
+        servicio.agregarCancion(cancion);
+        return "redirect:/canciones";
+    }
 }

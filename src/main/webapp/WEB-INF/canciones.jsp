@@ -6,12 +6,14 @@
 </head>
 <body>
     <h1>Lista de Canciones</h1>
-    <table border="3">
+
+    <table border="2">
         <tr>
             <th>Título</th>
             <th>Artista</th>
             <th>Detalle</th>
         </tr>
+
         <c:forEach var="cancion" items="${canciones}">
             <tr>
                 <td>${cancion.titulo}</td>
@@ -22,5 +24,11 @@
             </tr>
         </c:forEach>
     </table>
+
+    <br>
+
+    <a href="/canciones/formulario/agregar">
+        <button>Agregar canción</button>
+    </a>
 </body>
 </html>
