@@ -20,6 +20,10 @@
         <button>Editar Canción</button>
     </a>
 
+    <a href="/canciones/eliminar/${cancion.id}" onclick="return confirm('¿Estás seguro de eliminar esta canción?');">
+        <button>Eliminar Canción</button>
+    </a>
+
     <br><br>
 
     <a href="/canciones">Volver a lista de canciones</a>
