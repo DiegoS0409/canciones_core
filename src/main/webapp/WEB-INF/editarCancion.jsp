@@ -1,13 +1,15 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
-    <title>Agregar Canción</title>
+    <meta charset="UTF-8">
+    <title>Editar Canción</title>
 </head>
 <body>
-    <h1>Agregar Nueva Canción</h1>
+    <h1>Editar Canción</h1>
 
-    <form:form action="/canciones/procesa/agregar" method="post" modelAttribute="cancion">
+    <form:form action="/canciones/procesa/editar/${cancion.id}" method="post" modelAttribute="cancion">
 
         <div>
             <form:label path="titulo">Título:</form:label>
@@ -46,11 +48,11 @@
         </div>
 
         <br>
-        <button type="submit">Guardar Canción</button>
+        <input type="submit" value="Actualizar Canción">
 
     </form:form>
 
     <br>
-    <a href="/canciones">Volver a lista de canciones</a>
+    <a href="/canciones">Volver a lista</a>
 </body>
 </html>

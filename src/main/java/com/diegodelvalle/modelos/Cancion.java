@@ -1,10 +1,9 @@
 package com.diegodelvalle.modelos;
 
 import jakarta.persistence.*;
-
-import java.time.LocalDateTime;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "canciones")
@@ -34,6 +33,10 @@ public class Cancion {
     @Size(min = 3, message = "El idioma debe tener al menos 3 caracteres")
     private String idioma;
 
+    @NotBlank(message = "Campo Obligatorio")
+    @Size(min = 4, max = 4, message = "El año debe tener 4 dígitos")
+    private String anio;
+
     @Column(name = "fecha_creacion", updatable = false)
     private LocalDateTime fechaCreacion;
 
@@ -41,7 +44,6 @@ public class Cancion {
     private LocalDateTime fechaActualizacion;
 
     public Cancion() {}
-
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
@@ -60,6 +62,9 @@ public class Cancion {
 
     public String getIdioma() { return idioma; }
     public void setIdioma(String idioma) { this.idioma = idioma; }
+
+    public String getAnio() { return anio; }
+    public void setAnio(String anio) { this.anio = anio; }
 
     public LocalDateTime getFechaCreacion() { return fechaCreacion; }
     public void setFechaCreacion(LocalDateTime fechaCreacion) { this.fechaCreacion = fechaCreacion; }
